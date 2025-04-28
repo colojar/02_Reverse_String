@@ -36,20 +36,24 @@ namespace _02_Reverse_String
             Console.WriteLine();
             Console.WriteLine("Give me a string and I will reverse it.");
             Console.WriteLine("I will also check if the string is a palindrome.");
-            Console.WriteLine("Please enter a string:");
-            string input = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(input))
+            string stringToReverse = string.Empty;
+            do
             {
-                Console.WriteLine("");
-                return;
-            }
+                stringToReverse = InputString();
+            } while (string.IsNullOrEmpty(stringToReverse) || string.IsNullOrWhiteSpace(stringToReverse));
             Console.WriteLine();
-            Console.WriteLine($"You entered the string: {input}");
-            string reversed = ReverseString(input);
-            Console.WriteLine($"Reversed string: {reversed}");
-            Console.WriteLine($"Is the string a palindrome? {IsPalindrome(input)}");
+            Console.WriteLine($"You entered the string: {stringToReverse}");
+            string reversedString = ReverseString(stringToReverse);
+            Console.WriteLine($"Reversed string: {reversedString}");
+            Console.WriteLine($"Is the string a palindrome? {IsPalindrome(stringToReverse)}");
         }
-
+        static string InputString()
+        {
+            Console.Clear();
+            Console.WriteLine("Please enter a string: ");
+            string input = Console.ReadLine();
+            return input;
+        }
         static string ReverseString(string str)
         {
             char[] charArray = str.ToCharArray();
