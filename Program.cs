@@ -10,6 +10,28 @@ namespace _02_Reverse_String
     {
         static void Main(string[] args)
         {
+            while (true)
+            {
+                ReverseStringAndCheckPalindrome();
+                Console.WriteLine();
+                Console.WriteLine("Do you want to enter another string? (yes|y / no|n)");
+                string answer = Console.ReadLine().ToLower();
+                if (answer == "no" || answer == "n")
+                {
+                    break;
+                }
+
+                if (answer == "yes" || answer == "y")
+                {
+                    Console.Clear();
+                    continue;
+                }
+                Console.WriteLine("Invalid input. Please enter 'yes', 'no', 'y', or 'n'.");
+            }
+        }
+
+        static void ReverseStringAndCheckPalindrome()
+        {
             Console.WriteLine("Welcome to 'reverse string'");
             Console.WriteLine();
             Console.WriteLine("Give me a string and I will reverse it.");
@@ -21,6 +43,8 @@ namespace _02_Reverse_String
                 Console.WriteLine("");
                 return;
             }
+            Console.WriteLine();
+            Console.WriteLine($"You entered the string: {input}");
             string reversed = ReverseString(input);
             Console.WriteLine($"Reversed string: {reversed}");
             Console.WriteLine($"Is the string a palindrome? {IsPalindrome(input)}");
@@ -32,10 +56,12 @@ namespace _02_Reverse_String
             Array.Reverse(charArray);
             return new string(charArray);
         }
-        static bool IsPalindrome(string str)
+        static string IsPalindrome(string str)
         {
             string reversed = ReverseString(str);
-            return str.Equals(reversed, StringComparison.OrdinalIgnoreCase);
+            return str.Equals(reversed, StringComparison.OrdinalIgnoreCase) ? "yes" : "no";
+
         }
     }
 }
+
