@@ -70,9 +70,9 @@ namespace _02_Reverse_String
             Console.WriteLine($"Reversed string: {reversedString}");
 
             // Check if the string is a palindrome
-            // lowercase the strings and remove spaces
-            string lowerCaseString = stringToReverse.ToLower().Replace(" ", "");
-            string lowerCaseReversedString = reversedString.ToLower().Replace(" ", "");
+            // lowercase the strings
+            string lowerCaseString = stringToReverse.ToLower();
+            string lowerCaseReversedString = reversedString.ToLower();
             // Compare both strings
             if (lowerCaseString.Equals(lowerCaseReversedString))
             {
