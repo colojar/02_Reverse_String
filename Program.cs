@@ -16,22 +16,22 @@ namespace _02_Reverse_String
                 string answer;
                 do
                 {
-                Console.WriteLine();
-                Console.WriteLine("Do you want to enter another string? (yes|y / no|n)");
+                    Console.WriteLine();
+                    Console.WriteLine("Do you want to enter another string? (yes|y / no|n)");
                     answer = Console.ReadLine().ToLower();
 
-                if (answer == "no" || answer == "n")
-                {
+                    if (answer == "no" || answer == "n")
+                    {
                         return; // Exit the program
-                }
+                    }
 
-                if (answer == "yes" || answer == "y")
-                {
-                    Console.Clear();
+                    if (answer == "yes" || answer == "y")
+                    {
+                        Console.Clear();
                         break; // Exit the input validation loop and continue
-                }
+                    }
 
-                Console.WriteLine("Invalid input. Please enter 'yes', 'no', 'y', or 'n'.");
+                    Console.WriteLine("Invalid input. Please enter 'yes', 'no', 'y', or 'n'.");
                 } while (true);
             }
         }
@@ -45,32 +45,43 @@ namespace _02_Reverse_String
             string stringToReverse = string.Empty;
             do
             {
-                stringToReverse = InputString();
+                Console.WriteLine("Please enter a string: ");
+                stringToReverse = Console.ReadLine();
             } while (string.IsNullOrEmpty(stringToReverse) || string.IsNullOrWhiteSpace(stringToReverse));
             Console.WriteLine();
             Console.WriteLine($"You entered the string: {stringToReverse}");
-            string reversedString = ReverseString(stringToReverse);
+            
+            // Reverse the string without the Array.Reverse() method
+            char[] charArray = stringToReverse.ToCharArray();
+            // First index and last index
+            int i = 0;
+            int j = charArray.Length - 1;
+            // Swap first and last index until they meet in the middle
+            while (i < j)
+            {
+                var temp = charArray[i];
+                charArray[i] = charArray[j];
+                charArray[j] = temp;
+                i++;
+                j--;
+            }
+            // Convert the char array back to a string
+            string reversedString = new string(charArray);
             Console.WriteLine($"Reversed string: {reversedString}");
-            Console.WriteLine($"Is the string a palindrome? {IsPalindrome(stringToReverse)}");
-        }
-        static string InputString()
-        {
-            Console.Clear();
-            Console.WriteLine("Please enter a string: ");
-            string input = Console.ReadLine();
-            return input;
-        }
-        static string ReverseString(string str)
-        {
-            char[] charArray = str.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
-        }
-        static string IsPalindrome(string str)
-        {
-            string reversed = ReverseString(str);
-            return str.Equals(reversed, StringComparison.OrdinalIgnoreCase) ? "yes" : "no";
 
+            // Check if the string is a palindrome
+            // lowercase the strings and remove spaces
+            string lowerCaseString = stringToReverse.ToLower().Replace(" ", "");
+            string lowerCaseReversedString = reversedString.ToLower().Replace(" ", "");
+            // Compare both strings
+            if (lowerCaseString.Equals(lowerCaseReversedString))
+            {
+                Console.WriteLine($"The string '{stringToReverse}' is a palindrome.");
+            }
+            else
+            {
+                Console.WriteLine($"The string '{stringToReverse}' is not a palindrome.");
+            }
         }
     }
 }
