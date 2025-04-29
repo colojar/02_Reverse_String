@@ -13,20 +13,26 @@ namespace _02_Reverse_String
             while (true)
             {
                 ReverseStringAndCheckPalindrome();
+                string answer;
+                do
+                {
                 Console.WriteLine();
                 Console.WriteLine("Do you want to enter another string? (yes|y / no|n)");
-                string answer = Console.ReadLine().ToLower();
+                    answer = Console.ReadLine().ToLower();
+
                 if (answer == "no" || answer == "n")
                 {
-                    break;
+                        return; // Exit the program
                 }
 
                 if (answer == "yes" || answer == "y")
                 {
                     Console.Clear();
-                    continue;
+                        break; // Exit the input validation loop and continue
                 }
+
                 Console.WriteLine("Invalid input. Please enter 'yes', 'no', 'y', or 'n'.");
+                } while (true);
             }
         }
 
